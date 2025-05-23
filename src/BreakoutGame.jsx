@@ -127,8 +127,8 @@ function BreakoutGame() {
       </div>
       <div className="game-controls">
         <div className="control-pad">
-          <button className="control-button control-left" onClick={() => setPaddleX(x => Math.max(0, x - 24))}>←</button>
-          <button className="control-button control-right" onClick={() => setPaddleX(x => Math.min(BOARD_WIDTH - PADDLE_WIDTH, x + 24))}>→</button>
+          <button className="control-button control-left" onClick={(e) => { e.preventDefault(); setPaddleX(x => Math.max(0, x - 24)); }}>←</button>
+          <button className="control-button control-right" onClick={(e) => { e.preventDefault(); setPaddleX(x => Math.min(BOARD_WIDTH - PADDLE_WIDTH, x + 24)); }}>→</button>
         </div>
       </div>
     </div>

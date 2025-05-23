@@ -103,8 +103,8 @@ function PongGame() {
       </div>
       <div className="game-controls">
         <div className="control-pad">
-          <button className="control-button control-up" onClick={() => setPlayerY(y => Math.max(0, y - PADDLE_SPEED))}>↑</button>
-          <button className="control-button control-down" onClick={() => setPlayerY(y => Math.min(BOARD_HEIGHT - PADDLE_HEIGHT, y + PADDLE_SPEED))}>↓</button>
+          <button className="control-button control-up" onClick={(e) => { e.preventDefault(); setPlayerY(y => Math.max(0, y - PADDLE_SPEED)); }}>↑</button>
+          <button className="control-button control-down" onClick={(e) => { e.preventDefault(); setPlayerY(y => Math.min(BOARD_HEIGHT - PADDLE_HEIGHT, y + PADDLE_SPEED)); }}>↓</button>
         </div>
       </div>
     </div>
