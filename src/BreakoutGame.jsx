@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BOARD_WIDTH = 320;
-const BOARD_HEIGHT = 200;
-const PADDLE_WIDTH = 48;
-const PADDLE_HEIGHT = 10;
-const BALL_SIZE = 10;
+const BOARD_WIDTH = 300;
+const BOARD_HEIGHT = 180;
+const PADDLE_WIDTH = 42;
+const PADDLE_HEIGHT = 8;
+const BALL_SIZE = 8;
 const BRICK_ROWS = 3;
-const BRICK_COLS = 8;
-const BRICK_WIDTH = 36;
-const BRICK_HEIGHT = 14;
-const BRICK_PADDING = 6;
-const BALL_SPEED = 3;
+const BRICK_COLS = 7;
+const BRICK_WIDTH = 38;
+const BRICK_HEIGHT = 12;
+const BRICK_PADDING = 4;
+const BALL_SPEED = 2.5;
 
 function createBricks() {
   let bricks = [];
@@ -123,7 +123,13 @@ function BreakoutGame() {
         <strong>Score:</strong> {score}
         {gameOver && <div style={{ color: "red", marginTop: 12 }}>Game Over!<br /><button onClick={handleRestart}>Restart</button></div>}
         {win && <div style={{ color: "green", marginTop: 12 }}>You Win!<br /><button onClick={handleRestart}>Restart</button></div>}
-        {!gameOver && !win && <div style={{ marginTop: 12 }}>Use Left/Right arrows to move.</div>}
+        {!gameOver && !win && <div style={{ marginTop: 12 }}>Use Left/Right arrows or touch controls to move.</div>}
+      </div>
+      <div className="game-controls">
+        <div className="control-pad">
+          <button className="control-button control-left" onClick={() => setPaddleX(x => Math.max(0, x - 24))}>←</button>
+          <button className="control-button control-right" onClick={() => setPaddleX(x => Math.min(BOARD_WIDTH - PADDLE_WIDTH, x + 24))}>→</button>
+        </div>
       </div>
     </div>
   );

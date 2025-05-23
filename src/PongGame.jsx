@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const BOARD_WIDTH = 400;
-const BOARD_HEIGHT = 240;
-const PADDLE_WIDTH = 10;
-const PADDLE_HEIGHT = 60;
-const BALL_SIZE = 12;
-const PADDLE_SPEED = 6;
-const BALL_SPEED = 4;
+const BOARD_WIDTH = 300;
+const BOARD_HEIGHT = 180;
+const PADDLE_WIDTH = 8;
+const PADDLE_HEIGHT = 48;
+const BALL_SIZE = 8;
+const PADDLE_SPEED = 5;
+const BALL_SPEED = 3;
 
 function PongGame() {
   const [playerY, setPlayerY] = useState(BOARD_HEIGHT / 2 - PADDLE_HEIGHT / 2);
@@ -99,7 +99,13 @@ function PongGame() {
       <div style={{ marginTop: 12 }}>
         <strong>Score:</strong> You {score.player} - {score.ai} AI
         {gameOver && <div style={{ color: "red", marginTop: 12 }}>Game Over!<br /><button onClick={handleRestart}>Restart</button></div>}
-        {!gameOver && <div style={{ marginTop: 12 }}>Use Up/Down arrows to move.</div>}
+        {!gameOver && <div style={{ marginTop: 12 }}>Use Up/Down arrows or touch controls to move.</div>}
+      </div>
+      <div className="game-controls">
+        <div className="control-pad">
+          <button className="control-button control-up" onClick={() => setPlayerY(y => Math.max(0, y - PADDLE_SPEED))}>↑</button>
+          <button className="control-button control-down" onClick={() => setPlayerY(y => Math.min(BOARD_HEIGHT - PADDLE_HEIGHT, y + PADDLE_SPEED))}>↓</button>
+        </div>
       </div>
     </div>
   );
