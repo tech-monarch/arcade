@@ -35,8 +35,194 @@
 
 .card {
   padding: 2em;
+  border-radius: 18px;
+  background: #181818;
+  box-shadow: 0 2px 12px #0003;
+  margin: 1em auto;
+  max-width: 420px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:active,
+.card:focus-within {
+  box-shadow: 0 4px 24px #0005;
+  transform: scale(1.02);
+}
+@media (max-width: 600px) {
+  #root {
+    padding: 0.5rem;
+  }
+  .card {
+    padding: 1em;
+    max-width: 98vw;
+    min-width: 0;
+    margin: 0.5em auto;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.3em;
+  }
 }
 
+.read-the-docs {
+  color: #888;
+}
+.hand-animate {
+  animation: hand-shake 0.6s cubic-bezier(0.4, 0, 0.2, 1) 1;
+}
+@keyframes hand-shake {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  20% {
+    transform: translateY(-10px) scale(1.05);
+  }
+  40% {
+    transform: translateY(10px) scale(0.95);
+  }
+  60% {
+    transform: translateY(-6px) scale(1.03);
+  }
+  80% {
+    transform: translateY(6px) scale(0.97);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+.hand-reveal {
+  animation: hand-reveal 0.5s cubic-bezier(0.4, 0, 0.2, 1) 1;
+}
+@keyframes hand-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-30deg);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+.hand-anticipate {
+  animation: hand-anticipate 0.4s cubic-bezier(0.4, 0, 0.2, 1) 1;
+}
+@keyframes hand-anticipate {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.5rem;
+  margin: 2.5rem 0 2rem 0;
+  justify-items: center;
+  align-items: stretch;
+}
+.game-card {
+  background: linear-gradient(135deg, #f8fafc 60%, #e0e7ef 100%);
+  border-radius: 2rem;
+  box-shadow: 0 6px 32px #0002, 0 1.5px 6px #0001;
+  padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+  width: 100%;
+  max-width: 320px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.18s, background 0.18s;
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid #e5e7eb;
+}
+.game-card:hover,
+.game-card:focus-within {
+  box-shadow: 0 12px 48px #0003, 0 2px 12px #0002;
+  transform: translateY(-4px) scale(1.025);
+  background: linear-gradient(135deg, #e0e7ef 60%, #f8fafc 100%);
+  border-color: #b6c3e2;
+}
+.game-card-img-wrap {
+  background: linear-gradient(120deg, #e0e7ef 60%, #f8fafc 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 12px #0001;
+  padding: 1.2rem;
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s;
+}
+.game-card-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px #0001);
+  transition: transform 0.18s;
+}
+.game-card:hover .game-card-img {
+  transform: scale(1.08) rotate(-6deg);
+}
+.game-card-title {
+  font-family: "Montserrat", Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.35em;
+  font-weight: 700;
+  margin: 0 0 0.3em 0;
+  color: #1a2233;
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 4px #fff8;
+}
+.game-card-desc {
+  font-size: 1.02em;
+  color: #4b5563;
+  margin: 0 0 0.2em 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  opacity: 0.92;
+}
+@media (max-width: 900px) {
+  .game-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .game-card {
+    padding: 1.3rem 0.7rem 1.1rem 0.7rem;
+    min-height: 260px;
+    max-width: 98vw;
+  }
+  .game-card-img {
+    width: 56px;
+    height: 56px;
+  }
+}
+@media (max-width: 600px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    margin: 1.2rem 0 1rem 0;
+  }
+  .game-card {
+    padding: 1.1rem 0.5rem 0.8rem 0.5rem;
+    min-height: 180px;
+    max-width: 98vw;
+  }
+  .game-card-img {
+    width: 44px;
+    height: 44px;
+  }
+}
 .read-the-docs {
   color: #888;
 }

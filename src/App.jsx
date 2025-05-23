@@ -52,13 +52,18 @@ function App() {
   ];
   return (
     <>
-      <h1 style={{marginBottom: 24}}>Arcade Game Platform</h1>
+      <h1 style={{marginBottom: 24, fontFamily: 'Montserrat, Avenir, Helvetica, Arial, sans-serif', fontWeight: 700, fontSize: '2.8em', letterSpacing: '-1px', color: '#222', textShadow: '0 2px 12px #0001'}}>Arcade Game Platform</h1>
       {!game && (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 24, justifyContent: "center" }}>
+        <div className="game-grid">
           {games.map(g => (
-            <div key={g.key} className="card" style={{ width: 180, textAlign: "center", cursor: "pointer", boxShadow: "0 2px 8px #0002", transition: "transform 0.2s", padding: 16 }} onClick={() => setGame(g.key)}>
-              <img src={g.icon} alt={g.name + " icon"} style={{ width: 80, height: 80, marginBottom: 12 }} />
-              <h3 style={{ margin: 0 }}>{g.name}</h3>
+            <div key={g.key} className="game-card" onClick={() => setGame(g.key)}>
+              <div className="game-card-img-wrap">
+                <img src={g.icon} alt={g.name + ' icon'} className="game-card-img" />
+              </div>
+              <div className="game-card-content">
+                <h3 className="game-card-title">{g.name}</h3>
+                <p className="game-card-desc">{g.key === 'rps' ? 'Classic hand game, test your luck!' : g.key === 'millionaire' ? 'Quiz your way to a million!' : g.key === 'snake' ? 'Retro snake fun.' : g.key === 'tetris' ? 'Timeless block puzzle.' : g.key === 'pong' ? 'Arcade paddle challenge.' : g.key === 'breakout' ? 'Break the bricks!' : ''}</p>
+              </div>
             </div>
           ))}
         </div>
