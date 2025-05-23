@@ -89,6 +89,13 @@ function SnakeGame() {
     runningRef.current = true;
   };
 
+  const handleDirectionChange = (direction) => {
+    if (direction === 'up' && moveRef.current.y !== 1) setDirection({ x: 0, y: -1 });
+    else if (direction === 'down' && moveRef.current.y !== -1) setDirection({ x: 0, y: 1 });
+    else if (direction === 'left' && moveRef.current.x !== 1) setDirection({ x: -1, y: 0 });
+    else if (direction === 'right' && moveRef.current.x !== -1) setDirection({ x: 1, y: 0 });
+  };
+
   return (
     <div className="card" style={{ display: "inline-block", padding: 20 }}>
       <h2>Snake Game</h2>
@@ -136,7 +143,15 @@ function SnakeGame() {
             <button onClick={handleRestart}>Restart</button>
           </>
         )}
-        {!gameOver && <p>Use arrow keys to move.</p>}
+        {!gameOver && <p>Use arrow keys or touch controls to move.</p>}
+      </div>
+      <div className="game-controls">
+        <div className="control-pad">
+          <button className="control-button control-up" onClick={() => handleDirectionChange('up')}>↑</button>
+          <button className="control-button control-left" onClick={() => handleDirectionChange('left')}>←</button>
+          <button className="control-button control-right" onClick={() => handleDirectionChange('right')}>→</button>
+          <button className="control-button control-down" onClick={() => handleDirectionChange('down')}>↓</button>
+        </div>
       </div>
     </div>
   );

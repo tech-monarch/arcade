@@ -117,6 +117,16 @@ function TetrisGame() {
     setGameOver(false);
   };
 
+  const handleControl = (action) => {
+    if (gameOver) return;
+    let np = { ...piece, shape: piece.shape, row: piece.row, col: piece.col };
+    if (action === 'left') np.col--;
+    else if (action === 'right') np.col++;
+    else if (action === 'down') np.row++;
+    else if (action === 'rotate') np.shape = rotate(piece.shape);
+    if (isValid(board, np)) setPiece(np);
+  };
+
   return (
     <div className="card" style={{ display: "inline-block", padding: 20 }}>
       <h2>Tetris</h2>
@@ -156,7 +166,15 @@ function TetrisGame() {
           </div>
           <div><strong>Score:</strong> {score}</div>
           {gameOver && <div style={{ color: "red", marginTop: 12 }}>Game Over!<br /><button onClick={handleRestart}>Restart</button></div>}
-          {!gameOver && <div style={{ marginTop: 12 }}>Use arrow keys to move/rotate.</div>}
+          {!gameOver && <div style={{ marginTop: 12 }}>Use arrow keys or touch controls to move/rotate.</div>}
+        </div>
+      </div>
+      <div className="game-controls">
+        <div className="control-pad">
+          <button className="control-button control-up" onClick={() => handleControl('rotate')}>↻</button>
+          <button className="control-button control-left" onClick={() => handleControl('left')}>←</button>
+          <button className="control-button control-right" onClick={() => handleControl('right')}>→</button>
+          <button className="control-button control-down" onClick={() => handleControl('down')}>↓</button>
         </div>
       </div>
     </div>
